@@ -1,0 +1,10 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+}
+.name {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
