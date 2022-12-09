@@ -2,9 +2,23 @@
   display: flex;
   flex-direction: column;
   gap: 10px 0;
+  align-items: center;
 }
 .name {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+}
+.footer {
+  color: white;
+}
+.footerText {
+  font-weight: 500;
+}
+.footerLink {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  text-decoration-line: underline;
+  text-decoration-color: white;
 }

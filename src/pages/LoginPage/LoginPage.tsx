@@ -4,8 +4,8 @@ import styles from "./LoginPage.module.css";
 export const LoginPage = (): JSX.Element => {
   return (
     <section className={styles.page}>
-      <Logo />
-      <LoginForm />;
+      <Logo size="lg" />
+      <LoginForm />
     </section>
   );
 };

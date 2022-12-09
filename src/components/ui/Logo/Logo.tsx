@@ -1,12 +1,25 @@
 import classNames from "classnames";
 import { LogoProps } from "./Logo.props";
 import styles from "./Logo.module.css";
-import logo from "../../../assets";
-export const Logo = ({ className, ...props }: LogoProps): JSX.Element => {
+import LogoIcon from "./logo.svg";
+export const Logo = ({
+  size,
+  color,
+  className,
+  ...props
+}: LogoProps): JSX.Element => {
   return (
     <div {...props} className={classNames(styles.logo, className)}>
-      <h2 className={styles.text}>Chat App</h2>
-      <img src={logo} alt="Logo" className={styles.img} />
+      <h2
+        className={classNames(styles.text, {
+          [styles.large]: size == "lg",
+          [styles.medium]: size == "md",
+          [styles.dark]: color == "dark",
+        })}
+      >
+        Chat App
+      </h2>
+      <LogoIcon />
     </div>
   );
 };

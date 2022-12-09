@@ -1,0 +1,42 @@
+.navbar {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 10px 60px;
+  border-bottom: 1px solid var(--borderColor);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 30px;
+  list-style: none;
+  text-decoration-line: none;
+}
+.link {
+  padding: 18px;
+  font-size: 22px;
+  line-height: 16px;
+  font-weight: bold;
+  color: var(--grayText);
+  cursor: pointer;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.exit {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.active {
+  padding: 10px 14px;
+  background-color: var(--linkBg);
+  color: var(--purpleText);
+  border-radius: 4px;
+}

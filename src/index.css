@@ -2,4 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Source Sans Pro;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+:root {
+  --purpleBg: #c9bce7;
+  --linkBg: #f8f5fe;
+  --purpleText: #7f56da;
+  --borderColor: #e9eaed;
+  --grayText: #39414b;
+  --bgGradient: linear-gradient(90deg, #049cff, #7f56da);
 }

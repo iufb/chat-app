@@ -1,3 +1,4 @@
 import logo from "./logo.svg";
+import exit from "./exit.svg";
 
-export default logo;
+export { logo, exit };

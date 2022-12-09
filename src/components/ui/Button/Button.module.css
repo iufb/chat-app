@@ -12,8 +12,13 @@
 .medium {
 }
 .dark {
-  color: white;
-  background-color: #111727;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .purple {
   background-color: #7f56da;
