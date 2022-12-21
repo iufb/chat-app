@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { postLoginUser } from "../../utils/api";
 import { Button, Input } from "../ui";
 import { ILoginForm } from "./LoginForm.interface";
 
@@ -10,21 +11,31 @@ export const LoginForm = (): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginForm>();
-  const onSubmit = (data: ILoginForm) => {
-    console.log(data);
+  const navigate = useNavigate();
+  const onSubmit = async (data: ILoginForm) => {
+    try {
+      postLoginUser(data);
+      navigate("/conversation");
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <Input
+        color="white"
         type="text"
-        placeholder="Username"
-        {...register("username", {
+        label="Username"
+        id="user"
+        {...register("email", {
           required: true,
         })}
       />
       <Input
+        color="white"
         type="password"
-        placeholder="Password"
+        label="Password"
+        id="password"
         {...register("password", {
           required: true,
         })}
@@ -34,7 +45,7 @@ export const LoginForm = (): JSX.Element => {
       </Button>
       <div className={styles.footer}>
         <p className={styles.footerText}>
-          Don't have account?{" "}
+          Don`&apos`t have account?{" "}
           <Link to="/register">
             <span className={styles.footerLink}>Sign Up</span>
           </Link>

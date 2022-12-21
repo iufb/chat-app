@@ -4,17 +4,24 @@ import styles from "./Input.module.css";
 import { ForwardedRef, forwardRef } from "react";
 export const Input = forwardRef(
   (
-    { placeholder, type, className, ...props }: InputProps,
+    { label, id, type, color, className, ...props }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
     return (
-      <input
-        className={classNames(styles.input, className)}
-        placeholder={placeholder}
-        type={type}
-        {...props}
-        ref={ref}
-      />
+      <div className={styles.block}>
+        <input
+          className={classNames(styles.input, className, {
+            [styles.white]: color == "white",
+            [styles.dark]: color == "dark",
+          })}
+          placeholder=" "
+          id={id}
+          type={type}
+          {...props}
+          ref={ref}
+        />
+        <label htmlFor={id}>{label}</label>
+      </div>
     );
   }
 );

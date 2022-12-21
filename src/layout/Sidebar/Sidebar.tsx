@@ -2,20 +2,10 @@ import classNames from "classnames";
 import { Button, Tag } from "../../components/ui";
 import { SidebarProps } from "./Sidebar.props";
 import styles from "./Sidebar.module.css";
-import PencilIcon from "./pencil.svg";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import { useNavigate } from "react-router-dom";
-const SidebarHeader = (): JSX.Element => (
-  <div className={styles.header}>
-    <div className={styles.title}>
-      <p className={styles.headerTitle}>Messages</p>
-      <Tag count={40} />
-    </div>
-    <Button color="dark" size="lg">
-      <PencilIcon className={styles.pencil} />
-    </Button>
-  </div>
-);
+import { useState } from "react";
+import { CreateNewModal } from "../../components/modals/CreateNewModal/CreateNewModal";
 
 export const Sidebar = ({
   conversations,
@@ -23,9 +13,24 @@ export const Sidebar = ({
   ...props
 }: SidebarProps): JSX.Element => {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  console.log(showModal);
   return (
     <div {...props} className={classNames(styles.sidebar, className)}>
-      <SidebarHeader />
+      <div className={styles.header}>
+        <div className={styles.title}>
+          <p className={styles.headerTitle}>Messages</p>
+          <Tag count={40} />
+        </div>
+        <Button
+          color="dark"
+          size="lg"
+          onClick={() => {
+            setShowModal((prev) => !prev);
+          }}
+        ></Button>
+      </div>
+
       <div className={styles.items}>
         {conversations.map((conversation) => (
           <SidebarItem
@@ -35,6 +40,7 @@ export const Sidebar = ({
           />
         ))}
       </div>
+      {showModal && <CreateNewModal setShowModal={setShowModal} />}
     </div>
   );
 };

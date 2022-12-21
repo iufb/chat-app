@@ -10,6 +10,7 @@ export default defineConfig({
       exportAsDefault: true,
       svgrOptions: {
         icon: true,
+        typescript: true,
       },
     }),
     VitePluginFonts({

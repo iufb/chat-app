@@ -2,12 +2,50 @@
   width: 100%;
   outline: none;
   background-color: inherit;
-  border: 1px solid #fff;
   font-size: 16px;
   padding: 16px 20px;
   border-radius: 4px;
-  color: white;
 }
-.input::placeholder {
+.block {
+  position: relative;
+  width: 100%;
+}
+label {
+  position: absolute;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  top: 50%;
+  left: 4%;
+  pointer-events: none;
+  transition: 0.3s ease-in-out;
+  opacity: 0.5;
+  padding: 0 5px;
+}
+.input:focus + label,
+.input:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%) scale(1) translateX(10px);
+  opacity: 1;
+  font-weight: 600;
+  color: var(--purpleText);
+}
+.white {
   color: white;
+  border: 1px solid #fff;
+}
+.white:focus + label {
+  color: white;
+  background: var(--bgGradient);
+  border-radius: 12px;
+  padding: 4px;
+}
+.dark {
+  color: var(--grayText);
+  border: 1px solid var(--borderColor);
+}
+
+.dark + label {
+  color: var(--grayText);
+
+  background-color: white;
 }

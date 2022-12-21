@@ -1,3 +1,3 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-export interface RegisterFormProps
+export interface NewConversationFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {}

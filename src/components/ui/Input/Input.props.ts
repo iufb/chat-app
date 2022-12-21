@@ -5,4 +5,7 @@ export interface InputProps
     HTMLInputElement
   > {
   type: "password" | "text";
+  color: "white" | "dark";
+  label: string;
+  id: string;
 }

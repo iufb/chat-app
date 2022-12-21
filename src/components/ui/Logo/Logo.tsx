@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { LogoProps } from "./Logo.props";
 import styles from "./Logo.module.css";
-import LogoIcon from "./logo.svg";
 export const Logo = ({
   size,
   color,
@@ -19,7 +18,6 @@ export const Logo = ({
       >
         Chat App
       </h2>
-      <LogoIcon />
     </div>
   );
 };
