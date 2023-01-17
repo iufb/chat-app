@@ -5,6 +5,7 @@ import { Button, Input } from "../ui";
 import { ILoginForm } from "./LoginForm.interface";
 
 import styles from "./LoginForm.module.css";
+
 export const LoginForm = (): JSX.Element => {
   const {
     register,
@@ -45,7 +46,7 @@ export const LoginForm = (): JSX.Element => {
       </Button>
       <div className={styles.footer}>
         <p className={styles.footerText}>
-          Don`&apos`t have account?{" "}
+          Don&apos;t have account?{" "}
           <Link to="/register">
             <span className={styles.footerLink}>Sign Up</span>
           </Link>

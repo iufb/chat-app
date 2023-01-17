@@ -8,7 +8,7 @@ import { AuthContext } from "../../utils/context/user.context";
 
 export const Navbar = ({ className, ...props }: NavbarProps): JSX.Element => {
   const { pathname } = useLocation();
-  const { updateAuthUser } = useContext(AuthContext);
+  const { user, updateAuthUser } = useContext(AuthContext);
   const logout = () => {
     updateAuthUser(undefined);
   };
@@ -28,7 +28,7 @@ export const Navbar = ({ className, ...props }: NavbarProps): JSX.Element => {
         <Link to="/conversation">
           <p
             className={classNames(styles.link, {
-              [styles.active]: pathname == "/conversation",
+              [styles.active]: pathname.slice(0, 13) == "/conversation",
             })}
           >
             Messages
@@ -36,6 +36,7 @@ export const Navbar = ({ className, ...props }: NavbarProps): JSX.Element => {
         </Link>
       </div>
       <div className={styles.right} onClick={logout}>
+        {user?.firstName}
         <UserIcon />
       </div>
     </nav>

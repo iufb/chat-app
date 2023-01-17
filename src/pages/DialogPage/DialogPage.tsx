@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
 import { withLayout } from "../../layout/ConversationLayout";
-
+import { Dialog } from "../../components/Dialog/Dialog";
 const DialogPage = (): JSX.Element => {
-  const { id } = useParams();
-  return <div>DialogPage {id}</div>;
+  return (
+    <div>
+      <Dialog />
+    </div>
+  );
 };
 export default withLayout(DialogPage);

@@ -6,7 +6,7 @@ import { SidebarItem } from "../SidebarItem/SidebarItem";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CreateNewModal } from "../../components/modals/CreateNewModal/CreateNewModal";
-
+import PencilIcon from "./pencil.svg?component";
 export const Sidebar = ({
   conversations,
   className,
@@ -14,13 +14,12 @@ export const Sidebar = ({
 }: SidebarProps): JSX.Element => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState<boolean>(false);
-  console.log(showModal);
   return (
     <div {...props} className={classNames(styles.sidebar, className)}>
       <div className={styles.header}>
         <div className={styles.title}>
           <p className={styles.headerTitle}>Messages</p>
-          <Tag count={40} />
+          <Tag count={conversations.length} />
         </div>
         <Button
           color="dark"
@@ -28,7 +27,10 @@ export const Sidebar = ({
           onClick={() => {
             setShowModal((prev) => !prev);
           }}
-        ></Button>
+          className={styles.newChat}
+        >
+          <PencilIcon />
+        </Button>
       </div>
 
       <div className={styles.items}>

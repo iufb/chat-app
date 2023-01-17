@@ -1,18 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
+import svgr from "@honkhonk/vite-plugin-svgr";
 import { VitePluginFonts } from "vite-plugin-fonts";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    svgr({
-      exportAsDefault: true,
-      svgrOptions: {
-        icon: true,
-        typescript: true,
-      },
-    }),
+    svgr(),
     VitePluginFonts({
       google: {
         families: [

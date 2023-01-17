@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { ConversationsSidebar } from "../../utils/mock/SidebarMessage.mock";
+import { Conversation } from "../../utils/types";
 export interface SidebarItemProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  conversation: ConversationsSidebar;
+  conversation: Conversation;
 }

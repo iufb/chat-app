@@ -1,0 +1,48 @@
+.container {
+  margin-bottom: 15px;
+}
+
+.loggedUser {
+  width: 300px;
+  align-self: flex-end;
+}
+.right {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 15px;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+.content {
+  color: white;
+  background: var(--purpleText);
+  padding: 10px 15px 10px 10px;
+  border-radius: 5px 0px 5px 5px;
+}
+.recipientUser {
+  width: 340px;
+  display: flex;
+  gap: 15px;
+}
+.marginLeft {
+  margin-left: 55px;
+}
+.none {
+  display: none;
+}
+.recipientContent {
+  background: var(--borderColor);
+  padding: 10px 15px 10px 10px;
+  border-radius: 0px 5px 5px 5px;
+}
+.name {
+  font-weight: 500;
+  font-size: 18px;
+}
+.date {
+  color: var(--grayText);
+  opacity: 90%;
+}

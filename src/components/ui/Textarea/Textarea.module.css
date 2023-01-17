@@ -1,0 +1,17 @@
+.textarea {
+  display: block;
+  margin: 0 auto 10px auto;
+  width: 80%;
+  height: 90px;
+  resize: none;
+  border: 1px solid #c6c7cc;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+.textarea::placeholder {
+  font-size: 17px;
+}
+.textarea:focus {
+  outline-color: var(--purpleText);
+}

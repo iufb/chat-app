@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { Conversation } from "../../utils/types";
-export interface SidebarProps
+import { User } from "../../../utils/types";
+export interface DialogBarProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  conversations: Conversation[];
+  recipient: User;
 }

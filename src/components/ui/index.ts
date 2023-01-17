@@ -3,3 +3,4 @@ export * from "./Button/Button";
 export * from "./Logo/Logo";
 export * from "./UserIcon/UserIcon";
 export * from "./Tag/Tag";
+export * from "./Textarea/Textarea";

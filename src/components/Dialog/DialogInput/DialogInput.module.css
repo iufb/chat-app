@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.btn {
+  position: absolute;
+  right: 160px;
+  bottom: 25px;
+}
