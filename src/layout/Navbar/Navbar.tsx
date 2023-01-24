@@ -1,25 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import classNames from "classnames";
 import { NavbarProps } from "./Navbar.props";
 import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { Logo, UserIcon } from "../../components/ui";
-import { AuthContext } from "../../utils/context/user.context";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 export const Navbar = ({ className, ...props }: NavbarProps): JSX.Element => {
   const { pathname } = useLocation();
-  const { user, updateAuthUser } = useContext(AuthContext);
-  const logout = () => {
-    updateAuthUser(undefined);
-  };
+  const { user, signout } = useAuth();
   return (
     <nav {...props} className={classNames(styles.navbar, className)}>
       <div className={styles.links}>
         <Logo size="md" color="dark" />
-        <Link to="/">
+        <Link to="/home">
           <p
             className={classNames(styles.link, {
-              [styles.active]: pathname == "/",
+              [styles.active]: pathname == "/home",
             })}
           >
             Home
@@ -35,7 +32,7 @@ export const Navbar = ({ className, ...props }: NavbarProps): JSX.Element => {
           </p>
         </Link>
       </div>
-      <div className={styles.right} onClick={logout}>
+      <div className={styles.right} onClick={signout}>
         {user?.firstName}
         <UserIcon />
       </div>

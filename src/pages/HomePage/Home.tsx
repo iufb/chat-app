@@ -1,12 +1,5 @@
-import { Navbar } from "../../layout/Navbar/Navbar";
-
 const Home = (): JSX.Element => {
-  return (
-    <>
-      <Navbar />
-      hello
-    </>
-  );
+  return <>hello</>;
 };
 
 export default Home;

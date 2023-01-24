@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { postLoginUser } from "../../utils/api";
+import { useAuth } from "../../utils/hooks/useAuth";
 import { Button, Input } from "../ui";
 import { ILoginForm } from "./LoginForm.interface";
-
 import styles from "./LoginForm.module.css";
 
 export const LoginForm = (): JSX.Element => {
@@ -12,11 +12,15 @@ export const LoginForm = (): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginForm>();
+  const { user } = useAuth();
   const navigate = useNavigate();
+  console.log(user);
   const onSubmit = async (data: ILoginForm) => {
     try {
       postLoginUser(data);
-      navigate("/conversation");
+      if (user) {
+        navigate("/conversation");
+      }
     } catch (e) {
       console.log(e);
     }

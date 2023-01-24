@@ -3,14 +3,13 @@ import { UserIcon } from "../../components/ui";
 import { SidebarItemProps } from "./SidebarItem.props";
 import styles from "./SidebarItem.module.css";
 import { Conversation, User } from "../../utils/types";
-import { AuthContext } from "../../utils/context/user.context";
-import { useContext } from "react";
+import { useAuth } from "../../utils/hooks/useAuth";
 export const SidebarItem = ({
   conversation,
   className,
   ...props
 }: SidebarItemProps): JSX.Element => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const getRecipient = (conversation: Conversation): User => {
     return user?.id === conversation.creator.id
       ? conversation.recipient

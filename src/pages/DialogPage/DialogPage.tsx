@@ -1,4 +1,3 @@
-import { withLayout } from "../../layout/ConversationLayout";
 import { Dialog } from "../../components/Dialog/Dialog";
 const DialogPage = (): JSX.Element => {
   return (
@@ -7,4 +6,4 @@ const DialogPage = (): JSX.Element => {
     </div>
   );
 };
-export default withLayout(DialogPage);
+export default DialogPage;

@@ -3,23 +3,25 @@ import { Button, Tag } from "../../components/ui";
 import { SidebarProps } from "./Sidebar.props";
 import styles from "./Sidebar.module.css";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { CreateNewModal } from "../../components/modals/CreateNewModal/CreateNewModal";
 import PencilIcon from "./pencil.svg?component";
-export const Sidebar = ({
-  conversations,
-  className,
-  ...props
-}: SidebarProps): JSX.Element => {
-  const navigate = useNavigate();
+import { useAppDispatch, useAppSelector } from "../../utils/hooks/redux";
+import { fetchConversationsThunk } from "../../redux/conversationsSlice/conversationsSlice";
+export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const { conversations } = useAppSelector((store) => store.conversations);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchConversationsThunk());
+  }, [conversations]);
   return (
     <div {...props} className={classNames(styles.sidebar, className)}>
       <div className={styles.header}>
         <div className={styles.title}>
           <p className={styles.headerTitle}>Messages</p>
-          <Tag count={conversations.length} />
+          <Tag count={Array.from(conversations).length} />
         </div>
         <Button
           color="dark"
@@ -34,13 +36,13 @@ export const Sidebar = ({
       </div>
 
       <div className={styles.items}>
-        {conversations.map((conversation) => (
-          <SidebarItem
-            key={conversation.id}
-            conversation={conversation}
-            onClick={() => navigate(`/conversation/${conversation.id}`)}
-          />
-        ))}
+        {Array.from(conversations, ([_, conversation]) => conversation).map(
+          (conversation) => (
+            <Link to={`/conversation/${conversation.id}`} key={conversation.id}>
+              <SidebarItem conversation={conversation} />
+            </Link>
+          )
+        )}
       </div>
       {showModal && <CreateNewModal setShowModal={setShowModal} />}
     </div>

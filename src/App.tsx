@@ -1,41 +1,54 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
+import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { AuthenticatedRoute } from "./components/AuthenticatedRoute/AuthenticatedRoute";
-import {
-  RegisterPage,
-  ConversationPage,
-  LoginPage,
-  Home,
-  DialogPage,
-} from "./pages";
-import { AuthContext } from "./utils/context/user.context";
+import { ConversationLayout } from "./layout/ConversationLayout";
+import { Layout } from "./layout/Layout";
+import { RegisterPage, LoginPage, Home, DialogPage } from "./pages";
+import { store } from "./redux/store";
+import { socket, SocketContext } from "./utils/context/SocketContext";
+import { enableMapSet } from "immer";
 import { User } from "./utils/types";
+import { AuthContext } from "./utils/context/user.context";
+import { AuthenticatedRoute } from "./components/AuthenticatedRoute/AuthenticatedRoute";
+enableMapSet();
 export const App = (): JSX.Element => {
   const [user, setUser] = useState<User>();
   return (
-    <AuthContext.Provider value={{ user, updateAuthUser: setUser }}>
+    <AppProvider user={user} setUser={setUser}>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/conversation"
-          element={
-            <AuthenticatedRoute>
-              <ConversationPage />
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path="/conversation/:id"
-          element={
-            <AuthenticatedRoute>
-              <DialogPage />
-            </AuthenticatedRoute>
-          }
-        />
         <Route path="*" element={<div>No match</div>} />
+        <Route path="/" element={<Layout />}>
+          <Route path="home" element={<Home />} />
+          <Route
+            path="conversation"
+            element={
+              <AuthenticatedRoute>
+                <ConversationLayout />
+              </AuthenticatedRoute>
+            }
+          >
+            <Route path=":id" element={<DialogPage />} />
+          </Route>
+        </Route>
       </Routes>
-    </AuthContext.Provider>
+    </AppProvider>
   );
 };
+
+type Props = {
+  user?: User;
+  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+};
+function AppProvider({ children, user, setUser }: PropsWithChildren & Props) {
+  return (
+    <Provider store={store}>
+      <AuthContext.Provider value={{ user, updateAuthUser: setUser }}>
+        <SocketContext.Provider value={socket}>
+          {children}
+        </SocketContext.Provider>
+      </AuthContext.Provider>
+    </Provider>
+  );
+}
